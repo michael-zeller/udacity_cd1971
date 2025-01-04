@@ -55,3 +55,13 @@ aggregated price and volume over all exchanges tracked by bitcoinity
 
 bitcoinity_price_volume_USD_btc_5y
 https://data.bitcoinity.org/markets/price_volume/5y/USD?r=week&t=lb&vu=curr
+
+## blockchain
+
+1T linear avg 
+
+https://www.blockchain.com/explorer/charts/n-transactions
+
+https://www.blockchain.com/explorer/charts/estimated-transaction-volume
+
+https://www.blockchain.com/explorer/charts/market-price
