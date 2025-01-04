@@ -7515,7 +7515,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># import libraries</span>
@@ -7525,7 +7525,9 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -7790,7 +7792,7 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># show columns of weekly_data</span>
@@ -7807,7 +7809,7 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>bitcoin, investment, inflation, economy, crypto, price, volume_usd
+<pre>bitcoin, investment, inflation, economy, crypto, price, volume_usd, bitcoin-1w, bitcoin-2w, bitcoin-5w, investment-1w, investment-2w, investment-5w, inflation-1w, inflation-2w, inflation-5w, economy-1w, economy-2w, economy-5w, crypto-1w, crypto-2w, crypto-5w, volume_usd-1w, volume_usd-2w, volume_usd-5w, price+1w, bitcoin-1w-1w, bitcoin-1w-2w, bitcoin-1w-5w, bitcoin-2w-1w, bitcoin-2w-2w, bitcoin-2w-5w, bitcoin-5w-1w, bitcoin-5w-2w, bitcoin-5w-5w, investment-1w-1w, investment-1w-2w, investment-1w-5w, investment-2w-1w, investment-2w-2w, investment-2w-5w, investment-5w-1w, investment-5w-2w, investment-5w-5w, inflation-1w-1w, inflation-1w-2w, inflation-1w-5w, inflation-2w-1w, inflation-2w-2w, inflation-2w-5w, inflation-5w-1w, inflation-5w-2w, inflation-5w-5w, economy-1w-1w, economy-1w-2w, economy-1w-5w, economy-2w-1w, economy-2w-2w, economy-2w-5w, economy-5w-1w, economy-5w-2w, economy-5w-5w, crypto-1w-1w, crypto-1w-2w, crypto-1w-5w, crypto-2w-1w, crypto-2w-2w, crypto-2w-5w, crypto-5w-1w, crypto-5w-2w, crypto-5w-5w, volume_usd-1w-1w, volume_usd-1w-2w, volume_usd-1w-5w, volume_usd-2w-1w, volume_usd-2w-2w, volume_usd-2w-5w, volume_usd-5w-1w, volume_usd-5w-2w, volume_usd-5w-5w, price+1w-1w, price+1w-2w, price+1w-5w
 </pre>
 </div>
 </div>
@@ -7824,12 +7826,12 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># build up the final data structure</span>
@@ -7854,12 +7856,322 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+/tmp/ipykernel_22173/3303973011.py:6: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-1w'] = weekly_data[col].shift(1)
+/tmp/ipykernel_22173/3303973011.py:7: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-2w'] = weekly_data[col].shift(2)
+/tmp/ipykernel_22173/3303973011.py:8: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  weekly_data[f'{col}-5w'] = weekly_data[col].shift(5)
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># show columns of weekly_data</span>
@@ -7876,7 +8188,7 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>bitcoin, investment, inflation, economy, crypto, price, volume_usd, bitcoin-1w, bitcoin-2w, bitcoin-5w, investment-1w, investment-2w, investment-5w, inflation-1w, inflation-2w, inflation-5w, economy-1w, economy-2w, economy-5w, crypto-1w, crypto-2w, crypto-5w, volume_usd-1w, volume_usd-2w, volume_usd-5w, price+1w
+<pre>bitcoin, investment, inflation, economy, crypto, price, volume_usd, bitcoin-1w, bitcoin-2w, bitcoin-5w, investment-1w, investment-2w, investment-5w, inflation-1w, inflation-2w, inflation-5w, economy-1w, economy-2w, economy-5w, crypto-1w, crypto-2w, crypto-5w, volume_usd-1w, volume_usd-2w, volume_usd-5w, price+1w, bitcoin-1w-1w, bitcoin-1w-2w, bitcoin-1w-5w, bitcoin-2w-1w, bitcoin-2w-2w, bitcoin-2w-5w, bitcoin-5w-1w, bitcoin-5w-2w, bitcoin-5w-5w, investment-1w-1w, investment-1w-2w, investment-1w-5w, investment-2w-1w, investment-2w-2w, investment-2w-5w, investment-5w-1w, investment-5w-2w, investment-5w-5w, inflation-1w-1w, inflation-1w-2w, inflation-1w-5w, inflation-2w-1w, inflation-2w-2w, inflation-2w-5w, inflation-5w-1w, inflation-5w-2w, inflation-5w-5w, economy-1w-1w, economy-1w-2w, economy-1w-5w, economy-2w-1w, economy-2w-2w, economy-2w-5w, economy-5w-1w, economy-5w-2w, economy-5w-5w, crypto-1w-1w, crypto-1w-2w, crypto-1w-5w, crypto-2w-1w, crypto-2w-2w, crypto-2w-5w, crypto-5w-1w, crypto-5w-2w, crypto-5w-5w, volume_usd-1w-1w, volume_usd-1w-2w, volume_usd-1w-5w, volume_usd-2w-1w, volume_usd-2w-2w, volume_usd-2w-5w, volume_usd-5w-1w, volume_usd-5w-2w, volume_usd-5w-5w, price+1w-1w, price+1w-2w, price+1w-5w, bitcoin-1w-1w-1w, bitcoin-1w-1w-2w, bitcoin-1w-1w-5w, bitcoin-1w-2w-1w, bitcoin-1w-2w-2w, bitcoin-1w-2w-5w, bitcoin-1w-5w-1w, bitcoin-1w-5w-2w, bitcoin-1w-5w-5w, bitcoin-2w-1w-1w, bitcoin-2w-1w-2w, bitcoin-2w-1w-5w, bitcoin-2w-2w-1w, bitcoin-2w-2w-2w, bitcoin-2w-2w-5w, bitcoin-2w-5w-1w, bitcoin-2w-5w-2w, bitcoin-2w-5w-5w, bitcoin-5w-1w-1w, bitcoin-5w-1w-2w, bitcoin-5w-1w-5w, bitcoin-5w-2w-1w, bitcoin-5w-2w-2w, bitcoin-5w-2w-5w, bitcoin-5w-5w-1w, bitcoin-5w-5w-2w, bitcoin-5w-5w-5w, investment-1w-1w-1w, investment-1w-1w-2w, investment-1w-1w-5w, investment-1w-2w-1w, investment-1w-2w-2w, investment-1w-2w-5w, investment-1w-5w-1w, investment-1w-5w-2w, investment-1w-5w-5w, investment-2w-1w-1w, investment-2w-1w-2w, investment-2w-1w-5w, investment-2w-2w-1w, investment-2w-2w-2w, investment-2w-2w-5w, investment-2w-5w-1w, investment-2w-5w-2w, investment-2w-5w-5w, investment-5w-1w-1w, investment-5w-1w-2w, investment-5w-1w-5w, investment-5w-2w-1w, investment-5w-2w-2w, investment-5w-2w-5w, investment-5w-5w-1w, investment-5w-5w-2w, investment-5w-5w-5w, inflation-1w-1w-1w, inflation-1w-1w-2w, inflation-1w-1w-5w, inflation-1w-2w-1w, inflation-1w-2w-2w, inflation-1w-2w-5w, inflation-1w-5w-1w, inflation-1w-5w-2w, inflation-1w-5w-5w, inflation-2w-1w-1w, inflation-2w-1w-2w, inflation-2w-1w-5w, inflation-2w-2w-1w, inflation-2w-2w-2w, inflation-2w-2w-5w, inflation-2w-5w-1w, inflation-2w-5w-2w, inflation-2w-5w-5w, inflation-5w-1w-1w, inflation-5w-1w-2w, inflation-5w-1w-5w, inflation-5w-2w-1w, inflation-5w-2w-2w, inflation-5w-2w-5w, inflation-5w-5w-1w, inflation-5w-5w-2w, inflation-5w-5w-5w, economy-1w-1w-1w, economy-1w-1w-2w, economy-1w-1w-5w, economy-1w-2w-1w, economy-1w-2w-2w, economy-1w-2w-5w, economy-1w-5w-1w, economy-1w-5w-2w, economy-1w-5w-5w, economy-2w-1w-1w, economy-2w-1w-2w, economy-2w-1w-5w, economy-2w-2w-1w, economy-2w-2w-2w, economy-2w-2w-5w, economy-2w-5w-1w, economy-2w-5w-2w, economy-2w-5w-5w, economy-5w-1w-1w, economy-5w-1w-2w, economy-5w-1w-5w, economy-5w-2w-1w, economy-5w-2w-2w, economy-5w-2w-5w, economy-5w-5w-1w, economy-5w-5w-2w, economy-5w-5w-5w, crypto-1w-1w-1w, crypto-1w-1w-2w, crypto-1w-1w-5w, crypto-1w-2w-1w, crypto-1w-2w-2w, crypto-1w-2w-5w, crypto-1w-5w-1w, crypto-1w-5w-2w, crypto-1w-5w-5w, crypto-2w-1w-1w, crypto-2w-1w-2w, crypto-2w-1w-5w, crypto-2w-2w-1w, crypto-2w-2w-2w, crypto-2w-2w-5w, crypto-2w-5w-1w, crypto-2w-5w-2w, crypto-2w-5w-5w, crypto-5w-1w-1w, crypto-5w-1w-2w, crypto-5w-1w-5w, crypto-5w-2w-1w, crypto-5w-2w-2w, crypto-5w-2w-5w, crypto-5w-5w-1w, crypto-5w-5w-2w, crypto-5w-5w-5w, volume_usd-1w-1w-1w, volume_usd-1w-1w-2w, volume_usd-1w-1w-5w, volume_usd-1w-2w-1w, volume_usd-1w-2w-2w, volume_usd-1w-2w-5w, volume_usd-1w-5w-1w, volume_usd-1w-5w-2w, volume_usd-1w-5w-5w, volume_usd-2w-1w-1w, volume_usd-2w-1w-2w, volume_usd-2w-1w-5w, volume_usd-2w-2w-1w, volume_usd-2w-2w-2w, volume_usd-2w-2w-5w, volume_usd-2w-5w-1w, volume_usd-2w-5w-2w, volume_usd-2w-5w-5w, volume_usd-5w-1w-1w, volume_usd-5w-1w-2w, volume_usd-5w-1w-5w, volume_usd-5w-2w-1w, volume_usd-5w-2w-2w, volume_usd-5w-2w-5w, volume_usd-5w-5w-1w, volume_usd-5w-5w-2w, volume_usd-5w-5w-5w, price+1w-1w-1w, price+1w-1w-2w, price+1w-1w-5w, price+1w-2w-1w, price+1w-2w-2w, price+1w-2w-5w, price+1w-5w-1w, price+1w-5w-2w, price+1w-5w-5w
 </pre>
 </div>
 </div>
@@ -7887,7 +8199,7 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Split the data into features and target</span>
@@ -7922,10 +8234,21 @@ Refers to the phenomenon where investors buy into the market out of fear of miss
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Mean Squared Error: 11058230.090393739
-R^2 Score: 0.9801565396784522
+<pre>Mean Squared Error: 12724508.519543415
+R^2 Score: 0.9735435663205823
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The mean squared Error doesn't mean a lot, because the value of bitcoin changed a lot over the last years. But an R^2-Score of ~{{r2}}sound promissing.</p>
 </div>
 </div>
 </div>
