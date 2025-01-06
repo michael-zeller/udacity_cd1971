@@ -3,7 +3,9 @@ udacity data science capstone
 
 The goal of this analysis is to predict certain anomalities in the bitcoin price by using data from google trends.
 
-# datasources
+# Acknowledgements
+
+I used data from the following sources. 
 
 ## google trends worldwide
 
@@ -23,4 +25,9 @@ https://data.bitcoinity.org/markets/price_volume/5y/USD?r=week&t=lb&vu=curr
 # usage
 
 The code and explanation is inside fomo_btc.ipynb.
+
+used libraries are listed inside requirements.txt and can be installed with 
+`pip install -r requirements.txt`
+
+
 The result can be accessed under https://michael-zeller.github.io/udacity_cd1971/
